@@ -35,15 +35,19 @@
 |name|string|nil: false|
 |description|text|nil :false|
 |price|integer|nil: false|
-|category|references|nil: false, foreign_key: true|
-|status|references|nil: false, foreign_key: true|
-|shipping_charges|references|nil: false, foreign_key: true|
-|shipping_region|references|nil: false, foreign_key: true|
-|day_until_shipping|references|nil: false, foreign: true|
-
+|category_id|integer|nil: false|
+|status_id|integer|nil: false|
+|shipping_charges_id|integer|nil: false|
+|shipping_region_id|integer|nil: false|
+|day_until_shipping_id|integer|nil: false|
 ### Association
 - has_many :Users_items
 - has_one :Address
+- belongs_to_active_hash :category
+- belongs_to_active_hash :status
+- belongs_to_active_hash :shipping_charges
+- belongs_to_active_hash :shipping_region
+- belongs_to_active_hash :day_until_shipping
 
 ## Users_itemsテーブル
 |Column|Type|Options|
