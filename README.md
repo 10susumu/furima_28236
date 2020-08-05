@@ -35,6 +35,12 @@
 |name|string|nil: false|
 |description|text|nil :false|
 |price|integer|nil: false|
+|category|references|nil: false, foreign_key: true|
+|status|references|nil: false, foreign_key: true|
+|shipping_charges|references|nil: false, foreign_key: true|
+|shipping_region|references|nil: false, foreign_key: true|
+|day_until_shipping|references|nil: false, foreign: true|
+
 ### Association
 - has_many :Users_items
 - has_one :Address
