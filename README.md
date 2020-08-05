@@ -12,14 +12,12 @@
 |password|string|nil: false|
 |birthday|date|nil: false|
 ### Association
-- has_many :User_address
 - has_many :Users_items
 
-## User_addressesテーブル
+## Addressesテーブル
 |Column|Type|Options|
 |---|---|---|
-|user_id|references|nil: false, foreign_key: true|
-|item_id|references|nil: false, foreign_key: true|
+|item|references|nil: false, foreign_key: true|
 |postal_code|integer|nil: false|
 |prefectures|string|nil: false|
 |city|string|nil: false|
@@ -27,26 +25,25 @@
 |address_line2|string|nil: false|
 |phone_number|integer|nil: false|
 ### Association
-- belongs_to :Users
-- belongs_to :items
+- belongs_to :item
 
 ## Itemsテーブル
 |Column|Type|Options|
 |---|---|---|
-|user_id|references|nil: false|
+|user|references|nil: false|
 |images|string|nil: false|
-|item_name|string|nil: false|
-|description|text||
+|name|string|nil: false|
+|description|text|nil :false|
 |price|integer|nil: false|
 ### Association
 - has_many :Users_items
-- has_one :User_addresses
+- has_one :Address
 
 ## Users_itemsテーブル
 |Column|Type|Options|
 |---|---|---|
-|user_id|references|nil: false|
-|item_id|references|nil: false|
+|user|references|nil: false|
+|item|references|nil: false|
 ### Association
-- belongs_to :Users
-- belongs_to :items
+- belongs_to :User
+- belongs_to :Item
