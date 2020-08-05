@@ -1,7 +1,7 @@
 #テーブル設計
 
 ## usersテーブル
-｜Column｜Type｜Options|
+|Column|Type|Options|
 |---|---|---|
 |last_name|string|nil: false|
 |first_name|string|nil: false|
