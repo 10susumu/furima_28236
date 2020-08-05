@@ -3,20 +3,23 @@
 ## usersテーブル
 ｜Column｜Type｜Options|
 |---|---|---|
-|name|string|nil: false|
+|last_name|string|nil: false|
+|first_name|string|nil: false|
+|last_name_reading|string|nil: false|
+|first_name_reading|string|nil: false|
 |nickname|string|nil: false|
-|e-mail|string|nil: false|
+|email|string|nil: false|
 |password|string|nil: false|
 |birthday|date|nil: false|
 ### Association
 - has_many :User_address
-- has_many :Cards
-- has_many :Items
+- has_many :Users_items
 
-## User_address
+## User_addressesテーブル
 |Column|Type|Options|
 |---|---|---|
 |user_id|references|nil: false, foreign_key: true|
+|item_id|references|nil: false, foreign_key: true|
 |postal_code|integer|nil: false|
 |prefectures|string|nil: false|
 |city|string|nil: false|
@@ -25,30 +28,25 @@
 |phone_number|integer|nil: false|
 ### Association
 - belongs_to :Users
+- belongs_to :items
 
-## Cards
-|Column|Type|Options|
-|---|---|---|
-|user_id|references|nil: false, foreign_key: true|
-|card_number|integer|nil: false|
-|card_expiration|date|nil: false|
-|cvc|integer|nil: false|
-### Association
--belongs_to :Users
-
-## Items
+## Itemsテーブル
 |Column|Type|Options|
 |---|---|---|
 |user_id|references|nil: false|
 |images|string|nil: false|
 |item_name|string|nil: false|
 |description|text||
-|category|string||
-|status|string|nil: false|
-|shipping_charges|string|nil: false|
-|shipping_region|string|nil: false|
-|day_until_shipping|string|nil: false|
 |price|integer|nil: false|
-|selling|boolean|nil: false|
 ### Association
--belongs_to :Users
+- has_many :Users_items
+- has_one :User_addresses
+
+## Users_itemsテーブル
+|Column|Type|Options|
+|---|---|---|
+|user_id|references|nil: false|
+|item_id|references|nil: false|
+### Association
+- belongs_to :Users
+- belongs_to :items
