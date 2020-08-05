@@ -13,12 +13,13 @@
 |birthday|date|nil: false|
 ### Association
 - has_many :Users_items
+- has_many :Items, through: :Users_items
 
 ## Addressesテーブル
 |Column|Type|Options|
 |---|---|---|
 |item|references|nil: false, foreign_key: true|
-|postal_code|integer|nil: false|
+|postal_code|string|nil: false|
 |prefectures|string|nil: false|
 |city|string|nil: false|
 |address_line1|string|nil: false|
@@ -43,6 +44,7 @@
 ### Association
 - has_many :Users_items
 - has_one :Address
+- has_many :Users, through: :Users_items
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :shipping_charges
