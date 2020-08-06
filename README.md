@@ -20,13 +20,14 @@
 |---|---|---|
 |item|references|nil: false, foreign_key: true|
 |postal_code|string|nil: false|
-|prefectures|string|nil: false|
+|prefectures_id|integer|nil: false|
 |city|string|nil: false|
 |address_line1|string|nil: false|
 |address_line2|string||
 |phone_number|string|nil: false|
 ### Association
 - belongs_to :item
+- belongs_to_active_hash :prefectures
 
 ## Itemsテーブル
 |Column|Type|Options|
