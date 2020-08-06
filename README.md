@@ -23,8 +23,8 @@
 |prefectures|string|nil: false|
 |city|string|nil: false|
 |address_line1|string|nil: false|
-|address_line2|string|nil: false|
-|phone_number|integer|nil: false|
+|address_line2|string||
+|phone_number|string|nil: false|
 ### Association
 - belongs_to :item
 
