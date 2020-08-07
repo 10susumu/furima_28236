@@ -36,7 +36,8 @@ RSpec.describe User, type: :model do
       it 'パスワードは半角英数混在であること' do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
-        # expect(@user.errors.full_messages).to include("Password is invalid")
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'パスワードは確認用を含めて2回入力すること' do
         @user.password_confirmation = ''
