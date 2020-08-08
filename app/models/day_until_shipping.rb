@@ -1,0 +1,3 @@
+class DayUntilShipping < ApplicationRecord
+
+end
