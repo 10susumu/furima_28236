@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :category
-    
+
   end
 
   has_many :Users_items
@@ -15,7 +15,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_region
   belongs_to_active_hash :day_until_shipping
   
-  with_options numeracality: {other_than:1} do
-    validates :category
-  end
+  # validates :category, numeracality: {other_than:0} do
+  
 end
