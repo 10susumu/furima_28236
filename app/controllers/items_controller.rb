@@ -16,6 +16,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.permit(:nicknamem)
+    params.permit(:images, :name, :description, :category_id, :status_id, :shipping_charges_id, :shipping_region_id, :day_until_shipping_id, :price)
   end
 end

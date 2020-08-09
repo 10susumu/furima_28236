@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   with_options presence: true do
-    validates :category
+    validates :price
 
   end
 
@@ -15,6 +15,5 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_region
   belongs_to_active_hash :day_until_shipping
   
-  # validates :category, numeracality: {other_than:0} do
   
 end
