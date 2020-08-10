@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
   before_action :redirect_root, except: :index
 
   def index
-    @items = Item.all
+    @items = Item.order("created_at DESC")
+
   end
 
   def new
