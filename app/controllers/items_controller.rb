@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :redirect_root, except: :index
 
   def index
+    @items = Item.order("created_at DESC")
+
   end
 
   def new
@@ -26,5 +28,4 @@ class ItemsController < ApplicationController
   def redirect_root
     redirect_to root_path unless user_signed_in?
   end
-  
 end
