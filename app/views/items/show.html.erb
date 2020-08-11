@@ -1,0 +1,115 @@
+<%= render "shared/header" %>
+
+<%# 商品の概要 %>
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">
+      <%= @item.name %>
+    </h2>
+    <div class='item-img-content'>
+       <% if @item.images.attached? %>
+        <%= image_tag @item.images, class: "item-box-img" %>
+      <% else %>
+        <%= image_tag "item-sample.png", class: "item-box-img" %>
+      <% end %>
+      <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
+      <% if UsersItem.find_by(item_id:@item.id) != nil %>
+       <div class='sold-out'>
+          <span>Sold Out!!</span>
+        </div>
+      <%end%>
+      <%# //商品が売れている場合は、sold outの表示をしましょう。 %>
+    </div>
+    <div class="item-price-box">
+      <span class="item-price">
+        ¥ <%= @item.price %>
+      </span>
+      <span class="item-postage">
+        (税込) 送料込み
+      </span>
+    </div>
+
+
+    <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>
+
+    <% if user_signed_in? && current_user.id == @item.user_id%>
+      <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+      <p class='or-text'>or</p>
+      <%= link_to '削除', "#", method: :destroy, class:'item-destroy' %>
+
+    <%# 商品が売れていない場合はこちらを表示しましょう %>
+    <% else %>
+      <% if UsersItem.find_by(item_id:@item.id) == nil %>
+        <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+      <% end %>
+    <% end %>
+    <%# //商品が売れていない場合はこちらを表示しましょう %>
+
+    <%# //ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>
+
+    <div class="item-explain-box">
+      <span><%= @item.description %></span>
+    </div>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">出品者</th>
+          <td class="detail-value"><%= User.find(@item.user_id).nickname %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">カテゴリー</th>
+          <td class="detail-value"><%= Category.find(@item.category_id).name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">商品の状態</th>
+          <td class="detail-value"><%= Status.find(@item.status_id).name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">配送料の負担</th>
+          <td class="detail-value"><%= ShippingCharges.find(@item.shipping_charges_id).name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">発送元の地域</th>
+          <td class="detail-value"><%= ShippingRegion.find(@item.shipping_region_id).name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">発送日の目安</th>
+          <td class="detail-value"><%= DayUntilShipping.find(@item.day_until_shipping_id).name %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="option">
+      <div class="favorite-btn">
+        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+        <span>お気に入り 0</span>
+      </div>
+      <div class="report-btn">
+        <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
+        <span>不適切な商品の通報</span>
+      </div>
+    </div>
+  </div>
+  <%# /商品の概要 %>
+
+  <div class="comment-box">
+    <form>
+      <textarea class="comment-text"></textarea>
+      <p class="comment-warn">
+        相手のことを考え丁寧なコメントを心がけましょう。
+        <br>
+        不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      </p>
+      <button type="submit" class="comment-btn">
+        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+        <span>コメントする<span>
+      </button>
+    </form>
+  </div>
+  <div class="links">
+    <%=link_to '＜ 前の商品', "#", class:"change-item-btn" %>
+    <%=link_to '後ろの商品 ＞', "#", class:"change-item-btn" %>
+  </div>
+  <%=link_to Category.find(@item.category_id).name+"をもっと見る", "#",class:"another-item" %>
+</div>
+
+<%= render "shared/footer" %>
