@@ -7,7 +7,11 @@
       <%= @item.name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.images ,class:"item-box-img" %>
+       <% if @item.images.attached? %>
+        <%= image_tag @item.images, class: "item-box-img" %>
+      <% else %>
+        <%= image_tag "item-sample.png", class: "item-box-img" %>
+      <% end %>
       <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
       <% if UsersItem.find_by(item_id:@item.id) != nil %>
        <div class='sold-out'>
@@ -29,7 +33,7 @@
     <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>
 
     <% if user_signed_in? && current_user.id == @item.user_id%>
-      <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
+      <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', "#", method: :destroy, class:'item-destroy' %>
     <%end%>
