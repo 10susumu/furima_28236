@@ -10,7 +10,7 @@ app/assets/stylesheets/items/new.css %>
     <%= form_with model: @item, url: item_path, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 出品画像 %>
@@ -52,12 +52,12 @@ app/assets/stylesheets/items/new.css %>
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category, Category.all, :id, :name, {selected: @item.category_id}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {selected: @item.category_id}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:status, Status.all, :id, :name, {selected: @item.status_id}, {class:"select-box", id:"item-sales-status"}) %>
+        <%= f.collection_select(:status_id, Status.all, :id, :name, {selected: @item.status_id}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -66,24 +66,24 @@ app/assets/stylesheets/items/new.css %>
     <div class="items-detail">
       <div class="weight-bold-text question-text">
         <span>配送について</span>
-        <a class="question" href="#">?</a>
+        <%=link_to '?', "#", class:"question" %>
       </div>
       <div class="form">
         <div class="weight-bold-text">
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_charges, ShippingCharges.all, :id, :name, {selected: @item.shipping_charges_id}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:shipping_charges_id, ShippingCharges.all, :id, :name, {selected: @item.shipping_charges_id}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_region, ShippingRegion.all, :id, :name, {selected: @item.shipping_region_id}, {class:"select-box", id:"item-prefecture"}) %>
+        <%= f.collection_select(:shipping_region_id, ShippingRegion.all, :id, :name, {selected: @item.shipping_region_id}, {class:"select-box", id:"item-prefecture"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:day_until_shipping, DayUntilShipping.all, :id, :name, {selected: @item.day_until_shipping_id}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:day_until_shipping_id, DayUntilShipping.all, :id, :name, {selected: @item.day_until_shipping_id}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -92,7 +92,7 @@ app/assets/stylesheets/items/new.css %>
     <div class="sell-price">
       <div class="weight-bold-text question-text">
         <span>販売価格<br>(¥300〜9,999,999)</span>
-        <a class="question" href="#">?</a>
+        <%=link_to '?', "#", class:"question" %>
       </div>
       <div>
         <div class="price-content">
@@ -101,7 +101,7 @@ app/assets/stylesheets/items/new.css %>
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :hoge, class:"price-input", id:"item-price", value:@item.price %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", value:@item.price %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -122,18 +122,18 @@ app/assets/stylesheets/items/new.css %>
     <%# 注意書き %>
     <div class="caution">
       <p class="sentence">
-        <a href="#">禁止されている出品、</a>
-        <a href="#">行為</a>
+        <%=link_to '禁止されている出品', "#"%>
+        <%=link_to '行為', "#"%>
         を必ずご確認ください。
       </p>
       <p class="sentence">
         またブランド品でシリアルナンバー等がある場合はご記載ください。
-        <a href="#">偽ブランドの販売</a>
+        <%=link_to '偽ブランドの販売', "#"%>
         は犯罪であり処罰される可能性があります。
       </p>
       <p class="sentence">
         また、出品をもちまして
-        <a href="#">加盟店規約</a>
+        <%=link_to '加盟店規約', "#"%>
         に同意したことになります。
       </p>
     </div>
@@ -149,9 +149,9 @@ app/assets/stylesheets/items/new.css %>
 
   <footer class="items-sell-footer">
     <ul class="menu">
-      <li><a href="#">プライバシーポリシー</a></li>
-      <li><a href="#">フリマ利用規約</a></li>
-      <li><a href="#">特定商取引に関する表記</a></li>
+        <%=link_to 'プライバシーポリシー', "#", class:"question" %>
+        <%=link_to 'フリマ利用規約', "#", class:"question" %>
+        <%=link_to '特定商取引に関する表記', "#", class:"question" %>
     </ul>
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
     <p class="inc">
