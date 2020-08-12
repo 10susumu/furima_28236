@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_134643) do
+ActiveRecord::Schema.define(version: 2020_08_12_023651) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 2020_08_11_134643) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.string "postal_code"
+    t.integer "prefectures_id"
+    t.string "city"
+    t.string "address_line1"
+    t.string "address_line2"
+    t.string "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_addresses_on_item_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "images"
@@ -42,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_134643) do
     t.integer "category_id"
     t.integer "status_id"
     t.integer "shipping_charges_id"
-    t.integer "shipping_region_id"
+    t.integer "prefectures_id"
     t.integer "day_until_shipping_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

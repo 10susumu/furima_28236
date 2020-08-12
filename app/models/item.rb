@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :status_id
     validates :shipping_charges_id
-    validates :shipping_region_id
+    validates :prefectures_id
     validates :day_until_shipping_id
   end
 
@@ -28,6 +28,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :status
   belongs_to_active_hash :shipping_charges
-  belongs_to_active_hash :shipping_region
+  belongs_to_active_hash :prefectures
   belongs_to_active_hash :day_until_shipping
 end
