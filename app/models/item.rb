@@ -22,9 +22,9 @@ class Item < ApplicationRecord
 
   has_one_attached :images
 
-  has_many :Users_items
+  has_many :Transactions
   has_one :Address
-  has_many :Users, through: :Users_items
+  has_many :Users, through: :Transactions
   belongs_to_active_hash :category
   belongs_to_active_hash :status
   belongs_to_active_hash :shipping_charges
