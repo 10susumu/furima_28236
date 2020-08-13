@@ -41,8 +41,9 @@
     <% else %>
       <% if user_signed_in? && Transaction.find_by(item_id:@item.id) == nil %>
         <%= link_to '購入画面に進む', item_transactions_path(@item), class:"item-red-btn" %>
-      <% elsif %>
-        <%= link_to '購入画面に進む', new_user_session_path, class:"item-red-btn"%>
+      <% elsif user_signed_in? && Transaction.find_by(item_id:@item.id) != nil%>
+        <%=link_to 'もどる', root_path, class:"back-btn" %>
+
       <% end %>
     <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
