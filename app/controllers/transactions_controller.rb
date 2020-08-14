@@ -8,8 +8,9 @@ class TransactionsController < ApplicationController
   def new
     @transaction = ItemTransaction.new
   end
-    
+  
   def create
+    @item = Item.find(params[:item_id])
     @transaction = ItemTransaction.new(transaction_params)
     if @transaction.valid?
       pay_item
