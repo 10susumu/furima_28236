@@ -9,7 +9,7 @@
         <%= image_tag "item-sample.png", class: "item-img" %>
       <% end %>
     <%# 商品が売れていればsold outの表示 %>
-    <% if Transaction.find_by(item_id:item.id) != nil %>
+    <%# <% if Transaction.find_by(item_id:item.id) != nil %> %>
     <div class='sold-out'>
       <span>Sold Out!!</span>
     </div>
