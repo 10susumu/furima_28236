@@ -30,6 +30,10 @@ RSpec.describe ItemTransaction, type: :model do
       @item_transaction.valid?
       expect(@item_transaction.errors.full_messages).to include("Address line1 can't be blank")
     end
+    it '番地2が空でも登録できること' do
+      @item_transaction.address_line2 = nil
+      expect(@item_transaction).to be_valid
+    end
     it '電話番号が必須であること' do
       @item_transaction.phone_number = nil
       @item_transaction.valid?
