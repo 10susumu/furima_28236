@@ -4,6 +4,8 @@ class ItemTransaction
   attr_accessor :item_id, :user_id, :price, :token, :postal_code, :prefectures_id, :city, :address_line1, :address_line2, :phone_number
 
   with_options presence: true do
+    validates :item_id
+    validates :user_id
     validates :price
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :city

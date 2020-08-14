@@ -34,6 +34,8 @@ const pay = () => {
       } else {
         let inputElement = document.querySelector('input[name="commit"]');
         inputElement.disabled = false;
+        document.getElementById("charge-form").submit();
+        document.getElementById("charge-form").reset();
       }
     });
   });
