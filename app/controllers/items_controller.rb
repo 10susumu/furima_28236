@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-    redirect_to root_path
+      redirect_to root_path
     else
       render :show
     end
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:images, :name, :description, :category_id, :status_id, :shipping_charges_id, :shipping_region_id, :day_until_shipping_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:images, :name, :description, :category_id, :status_id, :shipping_charges_id, :prefectures_id, :day_until_shipping_id, :price).merge(user_id: current_user.id)
   end
 
   private

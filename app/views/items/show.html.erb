@@ -13,7 +13,7 @@
         <%= image_tag "item-sample.png", class: "item-box-img" %>
       <% end %>
       <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
-      <% if UsersItem.find_by(item_id:@item.id) != nil %>
+      <% if Transaction.find_by(item_id:@item.id) != nil %>
        <div class='sold-out'>
           <span>Sold Out!!</span>
         </div>
@@ -39,8 +39,11 @@
 
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <% else %>
-      <% if UsersItem.find_by(item_id:@item.id) == nil %>
-        <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+      <% if user_signed_in? && Transaction.find_by(item_id:@item.id) == nil %>
+        <%= link_to '購入画面に進む', item_transactions_path(@item), class:"item-red-btn" %>
+      <% elsif user_signed_in? && Transaction.find_by(item_id:@item.id) != nil%>
+        <%=link_to 'もどる', root_path, class:"back-btn" %>
+
       <% end %>
     <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
@@ -70,7 +73,7 @@
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= ShippingRegion.find(@item.shipping_region_id).name %></td>
+          <td class="detail-value"><%= Prefectures.find(@item.prefectures_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
