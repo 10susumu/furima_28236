@@ -11,9 +11,9 @@ RSpec.describe ItemTransaction, type: :model do
       expect(@item_transaction.errors.full_messages).to include("Postal code can't be blank")
     end
     it '郵便番号にはハイフンが必要であること(124-4567となる)' do
-      @item_transaction.postal_code = "1234567"
+      @item_transaction.postal_code = '1234567'
       @item_transaction.valid?
-      expect(@item_transaction.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@item_transaction.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
     end
     it '都道府県が必須であること' do
       @item_transaction.prefectures_id = 1
@@ -36,16 +36,16 @@ RSpec.describe ItemTransaction, type: :model do
       expect(@item_transaction.errors.full_messages).to include("Phone number can't be blank")
     end
     it '電話番号にはハイフンは不要で、11桁以内であること' do
-      @item_transaction.phone_number = "090-1234-5678"
+      @item_transaction.phone_number = '090-1234-5678'
       @item_transaction.valid?
-      expect(@item_transaction.errors.full_messages).to include("Phone number is invalid.", "Phone number Phone number is invalid.")
+      expect(@item_transaction.errors.full_messages).to include('Phone number is invalid.', 'Phone number Phone number is invalid.')
     end
-    it "item_idが空では登録できないこと" do
+    it 'item_idが空では登録できないこと' do
       @item_transaction.item_id = nil
       @item_transaction.valid?
       expect(@item_transaction.errors.full_messages).to include("Item can't be blank")
     end
-    it "user_idが空では登録できないこと" do
+    it 'user_idが空では登録できないこと' do
       @item_transaction.user_id = nil
       @item_transaction.valid?
       expect(@item_transaction.errors.full_messages).to include("User can't be blank")
