@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 2020_08_12_023651) do
   end
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "item_id"
-    t.string "postal_code"
-    t.integer "prefectures_id"
-    t.string "city"
-    t.string "address_line1"
+    t.bigint "item_id", null: false
+    t.string "postal_code", null: false
+    t.integer "prefectures_id", null: false
+    t.string "city", null: false
+    t.string "address_line1", null: false
     t.string "address_line2"
-    t.string "phone_number"
+    t.string "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_addresses_on_item_id"
@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(version: 2020_08_12_023651) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_reading", null: false
-    t.string "first_name_reading", null: false
-    t.string "nickname", null: false
-    t.date "birthday", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_reading"
+    t.string "first_name_reading"
+    t.string "nickname"
+    t.date "birthday"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
