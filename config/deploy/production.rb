@@ -62,3 +62,9 @@
 
 server '3.112.161.136', user: 'ec2-user', roles: %w{app db web}
 
+set :ssh_options, {
+  port: 3000,　#XXXにポート番号
+  keys: [File.expand_path('~/.ssh/susumu.pem')],　#'~/.ssh/id_rsa'部分をローカル環境の鍵のパスに
+  forward_agent: true,
+  # auth_methods: %w(publickey)
+}
